@@ -41,7 +41,8 @@
                   <path
                     d="M320-440h320v-80H320v80Zm0 120h320v-80H320v80Zm0 120h200v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
                 </svg>
-                <a href="https://github.com/tuando169" target="_blank" class="text-gray-100 font-semibold">PDF File</a>
+                <a href="https://drive.google.com/drive/folders/1aXecyEibHuHmH8EZa35uJT06MFY5rcoh?usp=drive_link"
+                  target="_blank" class="text-gray-100 font-semibold">Báo cáo</a>
               </div>
               <div class="flex text-lg items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -49,7 +50,8 @@
                   <path
                     d="m480-400-80-80 80-80 80 80-80 80Zm-85-235L295-735l185-185 185 185-100 100-85-85-85 85ZM225-295 40-480l185-185 100 100-85 85 85 85-100 100Zm510 0L635-395l85-85-85-85 100-100 185 185-185 185ZM480-40 295-225l100-100 85 85 85-85 100 100L480-40Z" />
                 </svg>
-                <a href="https://github.com/tuando169" target="_blank" class="text-gray-100 font-semibold">API Docs</a>
+                <a href="https://drive.google.com/drive/folders/1aXecyEibHuHmH8EZa35uJT06MFY5rcoh?usp=drive_link"
+                  target="_blank" class="text-gray-100 font-semibold">API Docs</a>
               </div>
             </div>
           </div>
