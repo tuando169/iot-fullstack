@@ -21,19 +21,18 @@ export const deviceService = {
 
     mqttHandler.publish(
       MqttTopicEnum.DeviceToggle,
-      `{"LED1":'${light ? 'ON' : 'OFF'}', "LED2":'${
-        fan ? 'ON' : 'OFF'
-      }', "LED3":'${airConditioner ? 'ON' : 'OFF'}'}`
+      `{LED1:'${light ? 'ON' : 'OFF'}', LED2:'${fan ? 'ON' : 'OFF'}', LED3:'${
+        airConditioner ? 'ON' : 'OFF'
+      }'}`
     );
 
     return [light, fan, airConditioner];
   },
   toggle: async (devices) => {
     console.log('devices', devices);
-    const recentStatus = await deviceModel.getRecentStatus();
-    console.log('recentStatus', recentStatus);
+
     let command = '';
-    devices.forEach((device, index) => {
+    const states = devices.map((device, index) => {
       const deviceName = device.device;
       const deviceState = device.state;
       command += `{LED${index + 1}:'${deviceState ? 'ON' : 'OFF'}'}`;
@@ -47,9 +46,8 @@ export const deviceService = {
 
     try {
       mqttHandler.publish(MqttTopicEnum.DeviceToggle, command);
-      devices.forEach(async (device, index) => {
-        if (device.state != recentStatus[index])
-          await deviceModel.create(device);
+      devices.forEach(async (device) => {
+        await deviceModel.create(device);
       });
     } catch (error) {
       console.error('Error toggling LED:', error);

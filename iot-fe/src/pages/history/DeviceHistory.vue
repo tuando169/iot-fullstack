@@ -1,4 +1,4 @@
-n<script setup lang="ts">
+<script setup lang="ts">
 import { apis } from '@/common/apis'
 import type { IDeviceHistory, IDeviceHistoryQuery } from '@/common/types'
 import axios from 'axios'
@@ -17,6 +17,7 @@ const queryParams = ref<IDeviceHistoryQuery>({
 
 
 const deviceHistory = ref<IDeviceHistory[]>([])
+const total = ref(0)
 
 onMounted(async () => {
   await fetchData()
@@ -39,6 +40,7 @@ async function fetchData(pagination?: any, filters?: any, sorter?: any) {
       }
     )
     deviceHistory.value = res.data.devices
+    total.value = res.data.total
   } catch (error) {
     console.error('Error fetching data:', error)
   }
@@ -50,8 +52,7 @@ async function fetchData(pagination?: any, filters?: any, sorter?: any) {
   <div class="pt-10 px-10 h-full w-full">
     <p class="text-3xl font-bold text-center">Lịch sử hoạt động</p>
     <div class="flex gap-5 mb-5 px-140">
-      <a-date-picker v-model:value="queryParams.date" placeholder="Ngày" format="DD/MM/YYYY" value-format="YYYY-MM-DD"
-        allow-clear style="width: 100%" />
+      <a-input v-model:value="queryParams.date" placeholder="Thời gian" style="width: 100%" />
       <a-button type="primary" :disable="!queryParams.date" @click="fetchData">Tìm kiếm</a-button>
     </div>
     <a-table :data-source="deviceHistory" :pagination="false" @change="fetchData">
@@ -77,7 +78,7 @@ async function fetchData(pagination?: any, filters?: any, sorter?: any) {
     </a-table>
     <div class="py-5 float-end">
       <a-pagination v-model:current="queryParams.page" v-model:pageSize="queryParams.pageSize" show-size-changer
-        :total="deviceHistory.length" @change="fetchData" />
+        :total="total" @change="fetchData" />
     </div>
   </div>
 </template>

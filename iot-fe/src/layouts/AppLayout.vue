@@ -10,26 +10,26 @@
 </template>
 
 <script setup lang="ts">
-import { h, onMounted, ref } from 'vue';
+import { h, onMounted, ref } from 'vue'
 import {
   PieChartOutlined,
   DesktopOutlined,
   InboxOutlined,
   ProfileOutlined,
-} from '@ant-design/icons-vue';
-import type { ItemType } from 'ant-design-vue';
-import router from '@/router';
-import { useRoute } from 'vue-router';
+} from '@ant-design/icons-vue'
+import type { ItemType } from 'ant-design-vue'
+import router from '@/router'
+import { useRoute } from 'vue-router'
 
-const selectedKeys = ref(['1']);
+const selectedKeys = ref(['1'])
 const items = ref<ItemType[]>([
   {
     key: 'dashboard',
     icon: () => h(PieChartOutlined),
     label: 'Dashboard',
     onClick: () => {
-      selectedKeys.value = ['dashboard'];
-      router.push({ name: 'dashboard' });
+      selectedKeys.value = ['dashboard']
+      router.push({ name: 'dashboard' })
     },
     theme: 'dark',
   },
@@ -38,17 +38,17 @@ const items = ref<ItemType[]>([
     icon: () => h(DesktopOutlined),
     label: 'Dữ liệu cảm biến',
     onClick: () => {
-      selectedKeys.value = ['data-sensor'];
-      router.push({ name: 'data-sensor' });
+      selectedKeys.value = ['data-sensor']
+      router.push({ name: 'data-sensor' })
     },
   },
   {
     key: 'history',
     icon: () => h(InboxOutlined),
-    label: 'Lịch sử bật tắt',
+    label: 'Lịch sử hoạt động',
     onClick: () => {
-      selectedKeys.value = ['history'];
-      router.push({ name: 'history' });
+      selectedKeys.value = ['history']
+      router.push({ name: 'history' })
     },
   },
   {
@@ -56,14 +56,14 @@ const items = ref<ItemType[]>([
     icon: () => h(ProfileOutlined),
     label: 'Thông tin cá nhân',
     onClick: () => {
-      selectedKeys.value = ['profile'];
-      router.push({ name: 'profile' });
+      selectedKeys.value = ['profile']
+      router.push({ name: 'profile' })
     },
   },
-]);
+])
 
 onMounted(() => {
-  const currentRoute = useRoute().name;
-  selectedKeys.value = [currentRoute as string];
-});
+  const currentRoute = useRoute().name
+  selectedKeys.value = [currentRoute as string]
+})
 </script>

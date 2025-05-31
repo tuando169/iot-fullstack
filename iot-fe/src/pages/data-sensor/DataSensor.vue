@@ -16,6 +16,7 @@ const queryParams = ref<ISensorDataQuery>({
 });
 
 const sensorData = ref<ISensorData[]>([]);
+const total = ref(0)
 
 onMounted(async () => {
   await fetchData();
@@ -35,6 +36,7 @@ async function fetchData(pagination?: any, filters?: any, sorter?: any) {
       params: queryParams.value,
     });
     sensorData.value = res.data.sensors;
+    total.value = res.data.total;
 
   } catch (error) {
     notification.error({
@@ -85,7 +87,7 @@ function handleReset() {
     </a-table>
     <div class="py-5 float-end">
       <a-pagination v-model:current="queryParams.page" v-model:pageSize="queryParams.pageSize" show-size-changer
-        :total="sensorData.length" @change="fetchData" />
+        :total="total" @change="fetchData" />
     </div>
   </div>
 </template>
